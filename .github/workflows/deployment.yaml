@@ -34,4 +34,4 @@ jobs:
     name: Build
     uses: gitops-ci-cd/.github/.github/workflows/build.yaml@main
     with:
-      directories: '["apps/api", "apps/web"]'
+      dockerfiles: '["apps/api/Dockerfile", "apps/web/Dockerfile"]'
