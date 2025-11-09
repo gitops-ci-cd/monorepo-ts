@@ -5,12 +5,6 @@
     "noEmit": false,
     "outDir": "./dist",
 
-    "baseUrl": ".",
-    "paths": {
-      "@monorepo/utils": ["../../packages/utils/src"],
-      "@monorepo/types": ["../../packages/types/src"]
-    },
-
     "lib": [
       "ES2024"
     ],
