@@ -19,7 +19,7 @@ services:
         required: false
     build:
       context: .
-      target: build
+      target: builder
       dockerfile: apps/web/Dockerfile
     command: run dev --workspace=@monorepo/web
     ports:
@@ -34,7 +34,7 @@ services:
         required: true
     build:
       context: .
-      target: build
+      target: builder
       dockerfile: apps/api/Dockerfile
     command: run dev --workspace=@monorepo/api
     ports:
@@ -50,6 +50,10 @@ services:
     volumes:
       - ./db/init:/docker-entrypoint-initdb.d:ro
       - postgres:/var/lib/postgresql/data
+
+  install:
+    <<: *npm
+    command: install
 
 volumes:
   node_modules: {}

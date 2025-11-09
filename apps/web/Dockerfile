@@ -18,7 +18,7 @@ RUN if [ -f package-lock.json ]; then \
 
 ENTRYPOINT [ "npm" ]
 
-FROM base AS build
+FROM base AS builder
 
 COPY . .
 
@@ -27,4 +27,4 @@ RUN npm run build --workspace=@monorepo/web
 # Continue with artifacts only, no node_modules, no binaries
 FROM scratch
 
-COPY --from=build /usr/src/app/apps/web/dist/ /usr/src/app/apps/web/dist/
+COPY --from=builder /usr/src/app/apps/web/dist/ /usr/src/app/apps/web/dist/

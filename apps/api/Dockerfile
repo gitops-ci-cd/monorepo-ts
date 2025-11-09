@@ -18,7 +18,7 @@ RUN if [ -f package-lock.json ]; then \
 
 ENTRYPOINT [ "npm" ]
 
-FROM base AS build
+FROM base AS builder
 
 COPY . .
 
@@ -40,8 +40,8 @@ COPY packages/utils/package.json ./packages/utils/
 RUN npm ci --workspaces --silent --production
 
 # Copy artifacts
-COPY --from=build /usr/src/app/apps/api/dist apps/api/dist
-COPY --from=build /usr/src/app/packages/utils/dist packages/utils/dist
+COPY --from=builder /usr/src/app/apps/api/dist apps/api/dist
+COPY --from=builder /usr/src/app/packages/utils/dist packages/utils/dist
 
 EXPOSE 8080
 
