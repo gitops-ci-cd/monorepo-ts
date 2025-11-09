@@ -1,0 +1,56 @@
+services:
+  npm: &npm
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      target: base
+      dockerfile: apps/api/Dockerfile
+    entrypoint: npm
+    command: help
+    volumes:
+      - .:/usr/src/app:delegated
+      - node_modules:/node_modules:cached
+
+  web:
+    <<: *npm
+    env_file:
+      - path: apps/web/.env
+        required: false
+    build:
+      context: .
+      target: build
+      dockerfile: apps/web/Dockerfile
+    command: run dev --workspace=@monorepo/web
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
+    depends_on:
+      - api
+
+  api:
+    <<: *npm
+    env_file:
+      - path: apps/api/.env
+        required: true
+    build:
+      context: .
+      target: build
+      dockerfile: apps/api/Dockerfile
+    command: run dev --workspace=@monorepo/api
+    ports:
+      - ${PORT:-8080}:${PORT:-8080}
+    depends_on:
+      - db
+
+  db:
+    env_file:
+      - path: apps/api/.env
+        required: true
+    image: postgres:18
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  node_modules: {}
+  postgres: {}

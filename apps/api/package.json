@@ -1,0 +1,26 @@
+{
+  "name": "@monorepo/api",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -b --pretty false",
+    "clean": "rimraf dist",
+    "lint": "eslint . || true",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@monorepo/types": "*",
+    "@monorepo/utils": "*",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "@types/express": "^4.17.17",
+    "@types/cors": "^2.8.13"
+  }
+}

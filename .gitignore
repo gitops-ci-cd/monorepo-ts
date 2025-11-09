@@ -1,0 +1,44 @@
+# Node
+node_modules/
+**/node_modules/
+
+# Builds / outputs
+dist/
+**/dist/
+build/
+**/build/
+.out/
+**/.out/
+.next/
+**/.next/
+.turbo/
+**/.turbo/
+coverage/
+**/coverage/
+.nyc_output/
+**/.tsbuildinfo
+**/*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Env files (keep templates)
+.env
+.env.*
+!.env.template
+!.env.*.template
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Docker
+*.local
+docker/*.local

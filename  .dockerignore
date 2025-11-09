@@ -1,0 +1,29 @@
+# VCS
+.git
+.gitignore
+
+# Node
+node_modules
+**/node_modules
+npm-debug.log*
+yarn*.log
+pnpm*.log
+
+# Builds
+dist
+**/dist
+build
+**/build
+.next
+**/.next
+.turbo
+**/.turbo
+coverage
+**/coverage
+artifacts
+web-dist
+
+# OS / editors
+.DS_Store
+.vscode
+.idea
