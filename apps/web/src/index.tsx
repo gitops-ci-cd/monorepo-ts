@@ -20,7 +20,7 @@ const App: React.FC = () => {
     setState({ loading: true, result: null, error: null });
 
     try {
-      const response = await fetch(`${process.env.API_URL}/hello/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/hello/${userId}`, {
         headers: {
           'Accept-Language': navigator.language
         }
